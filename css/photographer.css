@@ -6,6 +6,35 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.photographer-profile h2 {
+    color: #D3573C;
+    font-size: 64px;
+    margin: 10px 0;
+}
+
+.photographer-profile p:nth-child(2) {
+    font-size: 24px;
+    color: #901C1C;
+    margin: 10px 0;
+}
+.photographer-profile p:nth-child(3) {
+    font-size: 18px;
+    color: #525252;
+    margin: 10px 0;
+}
+
+.photograph-header img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .contact_button {

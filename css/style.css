@@ -5,6 +5,11 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    text-align: center;      
+}
+
 
 header {
     display: flex;
@@ -29,6 +34,9 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
+    margin-bottom: 50px;
+    justify-items: center;
+    align-items: center;
 }
 
 .photographer_section article {
@@ -42,9 +50,30 @@ h1 {
 .photographer_section article h2 {
     color: #D3573C;
     font-size: 36px;
+    margin: 10px;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.photographer-location {
+    font-size: 13px;
+    color: #901C1C;
+    margin: 0;
+}
+
+.photographer-tagline {
+    font-size: 10px;
+    margin: 0;
+}
+
+.photographer-price {
+    font-size: 9px;
+    color: #757575;
+    margin: 0;
 }

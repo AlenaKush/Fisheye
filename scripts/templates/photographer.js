@@ -6,6 +6,10 @@ function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         
+        const link = document.createElement('a'); 
+        link.setAttribute('href', `photographer.html?id=${id}`); 
+        link.setAttribute('aria-label', `View details for ${name}`); 
+
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", `${name}'s portrait`);
@@ -15,15 +19,20 @@ function photographerTemplate(data) {
 
         const location = document.createElement( 'p' );
         location.textContent = `${city}, ${country}`;
+        location.classList.add('photographer-location');
 
         const tag = document.createElement( 'p' );
         tag.textContent = tagline;
+        tag.classList.add('photographer-tagline');
 
         const cost = document.createElement( 'p' );
-        cost.textContent = `${price}€/jour`
+        cost.textContent = `${price}€/jour`;
+        cost.classList.add('photographer-price');
 
-        article.appendChild(img);
-        article.appendChild(h2);
+        link.appendChild(img); 
+        link.appendChild(h2); 
+        article.appendChild(link); 
+
         article.appendChild(location);
         article.appendChild(tag);
         article.appendChild(cost)
