@@ -1,22 +1,9 @@
-async function fetchPhotographers() {
-    const response = await fetch('../../data/photographers.json');
-    const data = await response.json();
-    return data.photographers;
-}
 
-function getPhotographerIdFromUrl() {
-    const params = new URL(document.location).searchParams;
-    return parseInt(params.get('id'));
-}
-
-async function getPhotographerById(id) {
-    const photographers = await fetchPhotographers();
-    return photographers.find(photographer => photographer.id === id);
-}
+import { fetchPhotographers, fetchMedia, getPhotographerIdFromUrl, getPhotographerById } from './fetch.js';
 
 
-
-function photographerTemplate(photographer) {
+//создаем элемент карточки фотографа
+export function photographerTemplate(photographer) {
     return {
         getUserCardDOM: function() {
             const article = document.createElement('article');
@@ -40,32 +27,26 @@ function photographerTemplate(photographer) {
     };
 }
 
-function photographePortrait(photographer) {
+//создаем портрет фотографа в карточке
+export function photographePortrait(photographer) {
     return {
         getImgCardDOM: function() {
-            
             const picture = `/assets/photographers/${photographer.portrait}`;
-            const img = document.createElement( 'img' );
+            const img = document.createElement('img');
             img.setAttribute("src", picture);
             img.setAttribute("alt", `${photographer.name}'s portrait`);
-
             return img;
         }
     };
 }
 
-
-async function displayData(photographer) {
+//отображение карточки фотографа
+export async function displayData(photographer) {
     const photographerSection = document.querySelector(".photograph-header");
-
-    if (!photographerSection) {
-        console.error('Element with class "photograph-header" not found');
-        return;
-    }
 
     const photographerModel = photographerTemplate(photographer);
     const userCardDOM = photographerModel.getUserCardDOM();
-    const button = document.querySelector(".contact_button")
+    const button = document.querySelector(".contact_button");
     photographerSection.insertBefore(userCardDOM, button);
 
     const photographerPhoto = photographePortrait(photographer);
@@ -73,16 +54,4 @@ async function displayData(photographer) {
     button.insertAdjacentElement('afterend', imgCardDOM);
 }
 
-async function init() {
 
-    const photographerId = getPhotographerIdFromUrl();
-    const photographer = await getPhotographerById(photographerId);
-
-    if (photographer) {
-        displayData(photographer);
-    } else {
-        console.error('Photographer not found');
-    }
-}
-
-init();

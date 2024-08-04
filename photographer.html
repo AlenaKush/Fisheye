@@ -15,28 +15,60 @@
     </header>
     <main id="main">
       <section class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contact Me" onclick="displayModal()">Contactez-moi</button>
+      </section>
+      <section class="filter">
+        <p>Trier par</p>
+        <div class="dropdown">
+          <button class="sort-by">
+            <span class="chosen-filter">Popularité</span>
+            <span class="arrow">></span>
+          </button> 
+          <ul class="dropdown-filter">
+            <li>
+              <button>Popularité</button>
+            </li>
+            <li>
+              <button>Date</button>
+            </li>
+            <li>
+              <button>Titre</button>
+            </li>
+          </ul>
+        </div>
       </section>
       <section class="media">
         <article id="media-gallery"></article>
       </section>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" aria-labelledby="form_header">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="form_header">Contactez-moi</h2>
+          <img aria-label="Close Contact form" tabindex="0" src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="first">Prénom</label>
+						<input class="text-control" type="text" id="first" name="first name" aria-label="First name"/>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+						<label for="last">Nom</label>
+						<input class="text-control" type="text" id="last" name="last name" aria-label="Last name"/>
+					</div>
+          <div>
+						<label for="email">Email</label>
+						<input class="text-control" id="email" name="email" aria-label="Email"/>
+					</div>
+          <div>
+						<label for="message">Votre message</label>
+						<input class="text-control" type="text" id="message" name="your message" aria-label="Your message"/>
+					</div>
+          <button class="contact_button" name="send">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
+    <script type="module" src="/scripts/pages/init.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
