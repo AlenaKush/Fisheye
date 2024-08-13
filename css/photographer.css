@@ -337,7 +337,7 @@ form textarea {
     margin: 0;
 }
 
-.nav_prev {
+#nav_prev {
     width: 38px; 
     height: 38px;
     left: 0;
@@ -349,7 +349,7 @@ form textarea {
     margin-right: 10px;
 }
 
-.nav_next {
+#nav_next {
     width: 38px; 
     height: 38px;
     right: 0;
@@ -359,7 +359,7 @@ form textarea {
     transform: translateY(-50%);
 }
 
-.close {
+#close_lightbox {
     width: 30px; 
     height: 30px;
     cursor: pointer;
