@@ -8,19 +8,25 @@ export async function likePriceDisplay(photographerId) {
     main.appendChild(likePricePlate);
     likePricePlate.classList.add('like-price-plate');
 
-    const likeTotal = document.createElement('p');
+    const likeTotal = document.createElement('div');
+    likeTotal.classList.add('total-likes');
+    const paragraph = document.createElement('p');
+    const heart = document.createElement('img');
+    heart.setAttribute('src', '../../assets/icons/black_heart.svg');
+    heart.setAttribute('alt', 'likes');
     likePricePlate.appendChild(likeTotal);
+    likeTotal.appendChild(paragraph);
     const media = await fetchMedia();
     const photographerMedia = media.filter(item => item.photographerId === photographerId);
     let likeCount = 0;
     photographerMedia.forEach(item => {
         likeCount += item.likes;
     });
-    likeTotal.textContent = likeCount;
-
+    paragraph.textContent = likeCount;
+    likeTotal.appendChild(heart);
     const price = document.createElement('p');
     likePricePlate.appendChild(price);
-    price.textContent = `${photographer.price}€/jour`;
+    price.textContent = `${photographer.price}€ / jour`;
 
 }
 

@@ -1,16 +1,48 @@
-/*import {fetchPhotographers, getPhotographerIdFromUrl, getPhotographerById} from '../pages/fetch.js'; 
-*/
-
 
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+    document.getElementById('first').focus();
+    modal.setAttribute('aria-hidden', 'false');
+    const form = document.getElementById('contact_form');
+    form.reset();
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'block';
+
 }
 
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
 }
+
+// Добавляем обработчик для клавиши Enter на крестике
+document.querySelector('[aria-label="Close Contact form"]').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        closeModal();
+    }
+});
+
+function trapFocus(event) {
+    const focusableElements = 'button, img, input, textarea'; // Примеры фокусируемых элементов
+    const modal = document.getElementById('contact_modal');
+    const focusableContent = modal.querySelectorAll(focusableElements);
+    const firstFocusableElement = focusableContent[0];
+    const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+    if (event.key === 'Tab') {
+        if (document.activeElement === lastFocusableElement) {
+            event.preventDefault();
+            firstFocusableElement.focus();
+        }
+    }
+}
+
+document.getElementById('contact_modal').addEventListener('keydown', trapFocus);
+
 
 //get photographers data from json
 async function fetchPhotographers() {
@@ -33,8 +65,6 @@ async function getPhotographerById(id) {
 
 const photographerId = getPhotographerIdFromUrl();
 
-
-
 async function addName(photographerId) {
     const photographer = await getPhotographerById(photographerId); //присваиваем переменной весь обьект фотографа
     const h2 = document.querySelector('h2');
@@ -44,12 +74,18 @@ async function addName(photographerId) {
 }
 
 // Вызов функции для вставки нового элемента
-
 addName(photographerId);
 
-
-const submitButton = document.querySelector('.contact_button');
+const submitButton = document.querySelector('.send_button');
 submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
     const firstName = document.querySelector('#first').value;
+    const lastName = document.querySelector('#last').value;
+    const email = document.querySelector('#email').value;
+    const message = document.querySelector('#message').value;
     console.log(firstName);
+    console.log(lastName);
+    console.log(email);
+    console.log(message);
+    closeModal();
 });

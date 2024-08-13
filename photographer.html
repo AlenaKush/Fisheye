@@ -18,36 +18,25 @@
         <button class="contact_button" aria-label="Contact Me" onclick="displayModal()">Contactez-moi</button>
       </section>
       <section class="filter">
-        <p>Trier par</p>
-        <div class="dropdown">
-          <button class="sort-by">
-            <span class="chosen-filter">Popularité</span>
-            <span class="arrow">></span>
-          </button> 
-          <ul class="dropdown-filter">
-            <li>
-              <button>Popularité</button>
-            </li>
-            <li>
-              <button>Date</button>
-            </li>
-            <li>
-              <button>Titre</button>
-            </li>
-          </ul>
-        </div>
+        <label for="filter">Trier par</label>
+        <select name="filter" id="filter">
+          <option value="popularity" selected>Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
       </section>
       <section class="media">
         <article id="media-gallery"></article>
       </section>
     </main>
+    <div id="overlay" class="overlay"></div>
     <div id="contact_modal" aria-labelledby="form_header">
 			<div class="modal">
 				<header>
           <h2 id="form_header">Contactez-moi</h2>
           <img aria-label="Close Contact form" tabindex="0" src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form id="contact_form">
 					<div>
 						<label for="first">Prénom</label>
 						<input class="text-control" type="text" id="first" name="first name" aria-label="First name"/>
@@ -62,13 +51,22 @@
 					</div>
           <div>
 						<label for="message">Votre message</label>
-						<input class="text-control" type="text" id="message" name="your message" aria-label="Your message"/>
+						<textarea class="text-control" id="message" name="your message" aria-label="Your message"></textarea>
 					</div>
-          <button class="contact_button" name="send">Envoyer</button>
+          <button type="button" class="send_button" name="send">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="lightBox">
+      <img class="nav_prev" aria-label="Show next image" tabindex="0" src="assets/icons/nav.svg" onclick="showNext()" />
+      <div class="media_conteiner">
+      <div class="lightBox_content"></div>
+      </div>
+      <img class="close" aria-label="Close lightBox" tabindex="0" src="assets/icons/close_lightbox.svg" onclick="closeLightBox()" />
+      <img class="nav_next" aria-label="Show previous image" tabindex="0" src="assets/icons/nav.svg" onclick="showPrevious()" />
+    </div>
     <script type="module" src="/scripts/pages/init.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script type="module" src="/scripts/utils/lightBox.js"></script>
   </body>
 </html>
