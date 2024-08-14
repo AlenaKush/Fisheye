@@ -314,6 +314,8 @@ form textarea {
 }
 
 .lightBox_content img, .lightBox_content video {
+    width: 50%;
+    height: 50%;
   /*   /* Сохраняет пропорции и вписывает изображение в контейнер */
 
 }
