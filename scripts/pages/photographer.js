@@ -1,6 +1,4 @@
 
-import { fetchPhotographers, fetchMedia, getPhotographerIdFromUrl, getPhotographerById } from './fetch.js';
-
 
 //создаем элемент карточки фотографа
 export function photographerTemplate(photographer) {

@@ -1,4 +1,5 @@
 import { fetchMedia, getPhotographerIdFromUrl, getPhotographerById } from "./fetch.js";
+import { likePriceDisplay } from "./price.js";
 
 let photographerMedia = [];
 let currentMediaIndex = 0;
@@ -20,10 +21,10 @@ function sortByTitle(a, b) {
 export async function getMedia(photographerId, sortBy = 'popularity') {
     const media = await fetchMedia();
     const photographer = await getPhotographerById(photographerId);
+    const updateTotalLikes = await likePriceDisplay(photographerId);
     const mediaGallery = document.getElementById('media-gallery');
     mediaGallery.innerHTML = '';
     photographerMedia = media.filter(item => item.photographerId === photographerId);
-    console.log(photographerMedia);
     photographerFolder = photographer.name;
 
     if (sortBy === 'popularity') {
@@ -80,10 +81,12 @@ export async function getMedia(photographerId, sortBy = 'popularity') {
                 item.likes -= 1;
                 item.hasLiked = false;
                 heart.setAttribute('src', '../../assets/icons/heart.svg');
+                updateTotalLikes(-1);
             } else {
                 item.likes += 1;
                 item.hasLiked = true;
                 heart.setAttribute('src', '../../assets/icons/black_heart.svg');
+                updateTotalLikes(1);
             }
             paragraph.textContent = item.likes;
         });

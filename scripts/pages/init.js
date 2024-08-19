@@ -1,9 +1,9 @@
 
 
 import { getMedia } from './media.js';
-import { photographerTemplate, photographePortrait, displayData } from './photographer.js';
-import { fetchPhotographers, fetchMedia, getPhotographerIdFromUrl, getPhotographerById } from './fetch.js';
-import { likePriceDisplay } from './price.js';
+import { displayData } from './photographer.js';
+import { getPhotographerIdFromUrl, getPhotographerById } from './fetch.js';
+
 
 async function init() {
     const photographerId = getPhotographerIdFromUrl(); //храним id  в переменной
