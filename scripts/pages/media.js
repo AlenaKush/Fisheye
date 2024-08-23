@@ -94,6 +94,7 @@ export async function getMedia(photographerId, sortBy = 'popularity') {
         heart.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 heart.click();
+                event.stopPropagation();
             }
         });
 
@@ -111,7 +112,31 @@ export async function getMedia(photographerId, sortBy = 'popularity') {
                 openLightBox();
             }
         });
+
+        
     });
+}
+
+window.setupNavigation = setupNavigation;
+function setupNavigation() {
+    if (navigationInitialized) return;  // Проверяем, была ли навигация уже инициализирована
+
+    const navNext = document.getElementById('nav_next');
+    const navPrev = document.getElementById('nav_prev');
+
+    navNext.addEventListener('click', () => {
+        currentMediaIndex = (currentMediaIndex + 1) % photographerMedia.length;
+        /*console.log('Next index:', currentMediaIndex);*/
+        updateLightBoxVisibility(currentMediaIndex);
+    });
+
+    navPrev.addEventListener('click', () => {
+        currentMediaIndex = (currentMediaIndex - 1 + photographerMedia.length) % photographerMedia.length;
+      /*  console.log('Previous index:', currentMediaIndex);*/
+        updateLightBoxVisibility(currentMediaIndex);
+    });
+
+    navigationInitialized = true;  // Помечаем навигацию как инициализированную
 }
 
 function openLightBox() {
@@ -191,27 +216,6 @@ function updateLightBoxVisibility(index) {
     if (currentItem) {
         currentItem.style.display = 'block';
     }
-}
-
-function setupNavigation() {
-    if (navigationInitialized) return;  // Проверяем, была ли навигация уже инициализирована
-
-    const navNext = document.getElementById('nav_next');
-    const navPrev = document.getElementById('nav_prev');
-
-    navNext.addEventListener('click', () => {
-        currentMediaIndex = (currentMediaIndex + 1) % photographerMedia.length;
-        console.log('Next index:', currentMediaIndex);
-        updateLightBoxVisibility(currentMediaIndex);
-    });
-
-    navPrev.addEventListener('click', () => {
-        currentMediaIndex = (currentMediaIndex - 1 + photographerMedia.length) % photographerMedia.length;
-        console.log('Previous index:', currentMediaIndex);
-        updateLightBoxVisibility(currentMediaIndex);
-    });
-
-    navigationInitialized = true;  // Помечаем навигацию как инициализированную
 }
 
 document.querySelector('[aria-label="Close lightBox"]').addEventListener('keydown', function(event) {
