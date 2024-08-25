@@ -4,7 +4,7 @@ import { likePriceDisplay } from "./price.js";
 let photographerMedia = [];
 let currentMediaIndex = 0;
 let photographerFolder = '';
-let navigationInitialized = false;  // Добавляем флаг для предотвращения многократного добавления обработчиков
+let navigationInitialized = false;
 
 function sortByPopularity(a, b) {
     return b.likes - a.likes;
@@ -119,24 +119,22 @@ export async function getMedia(photographerId, sortBy = 'popularity') {
 
 window.setupNavigation = setupNavigation;
 function setupNavigation() {
-    if (navigationInitialized) return;  // Проверяем, была ли навигация уже инициализирована
+    if (navigationInitialized) return;  // Vérifier si la navigation a déjà été initialisée
 
     const navNext = document.getElementById('nav_next');
     const navPrev = document.getElementById('nav_prev');
 
     navNext.addEventListener('click', () => {
         currentMediaIndex = (currentMediaIndex + 1) % photographerMedia.length;
-        /*console.log('Next index:', currentMediaIndex);*/
         updateLightBoxVisibility(currentMediaIndex);
     });
 
     navPrev.addEventListener('click', () => {
         currentMediaIndex = (currentMediaIndex - 1 + photographerMedia.length) % photographerMedia.length;
-      /*  console.log('Previous index:', currentMediaIndex);*/
         updateLightBoxVisibility(currentMediaIndex);
     });
 
-    navigationInitialized = true;  // Помечаем навигацию как инициализированную
+    navigationInitialized = true;  // Marquer la navigation comme initialisée
 }
 
 function openLightBox() {

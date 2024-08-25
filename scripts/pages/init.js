@@ -6,8 +6,8 @@ import { getPhotographerIdFromUrl, getPhotographerById } from './fetch.js';
 
 
 async function init() {
-    const photographerId = getPhotographerIdFromUrl(); //храним id  в переменной
-    const photographer = await getPhotographerById(photographerId); //храним данные фотографа из json найденого по id
+    const photographerId = getPhotographerIdFromUrl(); // Stocker l'ID dans une variable
+    const photographer = await getPhotographerById(photographerId); // Stocker les données du photographe à partir du JSON trouvé par ID
     await displayData(photographer);
     await getMedia(photographerId);
 

@@ -20,7 +20,7 @@ function closeModal() {
     modal.setAttribute('aria-hidden', 'true');
 }
 
-// Добавляем обработчик для клавиши Enter на крестике
+// Ajouter un gestionnaire pour la touche Entrée sur la croix
 document.querySelector('[aria-label="Close Contact form"]').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         closeModal();
@@ -28,7 +28,7 @@ document.querySelector('[aria-label="Close Contact form"]').addEventListener('ke
 });
 
 function trapFocus(event) {
-    const focusableElements = 'button, img, input, textarea'; // Примеры фокусируемых элементов
+    const focusableElements = 'button, img, input, textarea'; 
     const modal = document.getElementById('contact_modal');
     const focusableContent = modal.querySelectorAll(focusableElements);
     const firstFocusableElement = focusableContent[0];
@@ -74,7 +74,7 @@ async function addName(photographerId) {
 
 }
 
-// Вызов функции для вставки нового элемента
+// Appeler la fonction pour insérer un nouvel élément
 addName(photographerId);
 
 const submitButton = document.querySelector('.send_button');

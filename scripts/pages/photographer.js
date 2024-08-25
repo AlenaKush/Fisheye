@@ -1,6 +1,4 @@
 
-
-//создаем элемент карточки фотографа
 export function photographerTemplate(photographer) {
     return {
         getUserCardDOM: function() {
@@ -25,7 +23,7 @@ export function photographerTemplate(photographer) {
     };
 }
 
-//создаем портрет фотографа в карточке
+// Créer le portrait du photographe
 export function photographePortrait(photographer) {
     return {
         getImgCardDOM: function() {

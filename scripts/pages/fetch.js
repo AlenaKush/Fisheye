@@ -21,6 +21,6 @@ export function getPhotographerIdFromUrl() {
 
 //get photographer by id from json
 export async function getPhotographerById(id) {
-    const photographers = await fetchPhotographers(); //сохраняем ответ функции fetchPhotographers в переменную
-    return photographers.find(photographer => photographer.id === id); //ищем фотографа с id который будет передан в качестве параметра в функцию
+    const photographers = await fetchPhotographers(); 
+    return photographers.find(photographer => photographer.id === id); // Rechercher un photographe avec l'ID qui sera passé en paramètre à la fonction
 }
